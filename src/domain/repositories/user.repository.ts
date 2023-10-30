@@ -12,6 +12,9 @@ export class UserRepository {
     private readonly userManager: Repository<User>,
   ) {}
 
+  public findOneByUsername = async (username: string): Promise<User> =>
+    this.userManager.findOneBy({ username });
+
   public save = async (
     name: string,
     username: string,
