@@ -8,6 +8,12 @@ export class User {
   public id: number;
 
   @Column({ nullable: false })
+  public uuid: string;
+
+  @Column({ nullable: false })
+  public name: string;
+
+  @Column({ nullable: false })
   public username: string;
 
   @Column({ nullable: false })
@@ -19,12 +25,12 @@ export class User {
   @Column({ nullable: false })
   public createdAt: Date;
 
-  @Column({ nullable: true })
+  @Column({ nullable: false })
   public updatedAt: Date;
 
   @Column({ nullable: false })
   public createdUser: string;
 
-  @Column({ nullable: true })
+  @Column({ nullable: false })
   public updatedUser: string;
 }

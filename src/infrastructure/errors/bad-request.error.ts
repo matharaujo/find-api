@@ -1,7 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { Expose } from 'class-transformer';
 
-export class InternalServerError {
+export class BadRequestError {
   @ApiProperty({ name: 'path', example: '/api/path' })
   @Expose({ name: 'path' })
   public path: string;
@@ -10,11 +10,15 @@ export class InternalServerError {
   @Expose({ name: 'timestamp' })
   public timestamp: string;
 
-  @ApiProperty({ name: 'message', example: 'Internal Server Exception' })
+  @ApiProperty({ name: 'message', example: 'Bad Request Exception' })
   @Expose({ name: 'message' })
   public message: string;
 
-  @ApiProperty({ name: 'description', example: 'Internal Server Exception' })
+  @ApiProperty({
+    name: 'description',
+    example: ['field should not be empty', 'field must be a string'],
+    type: Array,
+  })
   @Expose({ name: 'description' })
   public description: string;
 }

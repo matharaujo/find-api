@@ -20,13 +20,24 @@ export class HttpExceptionFilter implements ExceptionFilter<HttpException> {
         ? exception.getStatus()
         : HttpStatus.INTERNAL_SERVER_ERROR;
 
-    const responseBody = {
-      path: request.url,
-      timestamp: new Date().toISOString(),
-      error_code: exception.getStatus().toString(),
-      message: exception.message,
-      stack: exception.stack,
-    };
+    const responseBody =
+      httpStatus == HttpStatus.BAD_REQUEST
+        ? {
+            path: request.url,
+            timestamp: new Date().toISOString(),
+            error_code: exception.getStatus().toString(),
+            message: exception.message,
+            description: exception.message.length
+              ? exception.getResponse()['message']
+              : undefined,
+          }
+        : {
+            path: request.url,
+            timestamp: new Date().toISOString(),
+            error_code: exception.getStatus().toString(),
+            message: exception.message,
+            description: exception.getResponse()['message'],
+          };
 
     httpAdapter.reply(ctx.getResponse(), responseBody, httpStatus);
   }

@@ -14,9 +14,14 @@ export class TableUser20231030154145 implements MigrationInterface {
             generationStrategy: 'increment',
           },
           {
+            name: 'uuid',
+            type: 'varchar(255)',
+            isNullable: false,
+          },
+          {
             name: 'name',
             type: 'varchar(255)',
-            isNullable: true,
+            isNullable: false,
           },
           {
             name: 'username',
@@ -51,7 +56,7 @@ export class TableUser20231030154145 implements MigrationInterface {
           {
             name: 'updated_user',
             type: 'varchar(50)',
-            isNullable: true,
+            isNullable: false,
           },
         ],
       }),
@@ -69,6 +74,7 @@ export class TableUser20231030154145 implements MigrationInterface {
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
+    await queryRunner.query('DROP INDEX index_user_username_email');
     await queryRunner.query('DROP TABLE user');
   }
 }
