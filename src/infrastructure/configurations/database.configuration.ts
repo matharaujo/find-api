@@ -22,6 +22,7 @@ dotenv.config({ path: path.resolve(process.cwd() + env) });
       migrationsTableName: 'migrations',
       migrations: ['dist/**/*.migration{.ts,.js}'],
       namingStrategy: new SnakeNamingStrategy(),
+      synchronize: true,
     }),
   ],
 })
