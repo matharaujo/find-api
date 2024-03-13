@@ -1,10 +1,10 @@
-import { MigrationInterface, QueryRunner, Table, TableIndex } from 'typeorm';
+import { MigrationInterface, QueryRunner, Table } from 'typeorm';
 
-export class TableUser20231030154145 implements MigrationInterface {
+export class TableSupplier1709677979528 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(
       new Table({
-        name: 'user',
+        name: 'supplier',
         columns: [
           {
             name: 'id',
@@ -19,23 +19,38 @@ export class TableUser20231030154145 implements MigrationInterface {
             isNullable: false,
           },
           {
-            name: 'name',
+            name: 'cnpj',
+            type: 'varchar(14)',
+            isNullable: false,
+          },
+          {
+            name: 'fantasy_name',
             type: 'varchar(255)',
             isNullable: false,
           },
           {
-            name: 'username',
+            name: 'social_reason',
             type: 'varchar(255)',
+            isNullable: false,
+          },
+          {
+            name: 'state_inscription',
+            type: 'varchar(14)',
             isNullable: false,
           },
           {
             name: 'email',
-            type: 'varchar(255)',
+            type: 'varchar(90)',
             isNullable: false,
           },
           {
-            name: 'password',
-            type: 'varchar(255)',
+            name: 'phone',
+            type: 'varchar(90)',
+            isNullable: false,
+          },
+          {
+            name: 'address_id',
+            type: 'int',
             isNullable: false,
           },
           {
@@ -62,19 +77,7 @@ export class TableUser20231030154145 implements MigrationInterface {
       }),
       true,
     );
-
-    await queryRunner.createIndex(
-      'user',
-      new TableIndex({
-        name: 'index_user_username_email',
-        columnNames: ['username', 'email'],
-        isUnique: true,
-      }),
-    );
   }
 
-  public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.query('DROP INDEX index_user_username_email');
-    await queryRunner.query('DROP TABLE user');
-  }
+  public async down(queryRunner: QueryRunner): Promise<void> {}
 }

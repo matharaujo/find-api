@@ -19,7 +19,7 @@ export class SwaggerConfiguration {
       },
     );
 
-    SwaggerModule.setup('docs', server, document, {
+    SwaggerModule.setup('api/docs', server, document, {
       swaggerOptions: {
         defaultModelsExpandDepth: 0,
       },
