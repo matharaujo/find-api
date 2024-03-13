@@ -6,6 +6,7 @@ import { HealthController } from '@Infrastructure/controllers/health.controller'
 import { JwtController } from '@Infrastructure/controllers/jwt.controller';
 import { UserController } from '@Infrastructure/controllers/user.controller';
 import { SupplierController } from '@Infrastructure/controllers/supplier.controller';
+import { StoreController } from '@Infrastructure/controllers/store.controller';
 
 @Module({
   imports: [DatabaseConfiguration, UsecasesModule],
@@ -15,6 +16,7 @@ import { SupplierController } from '@Infrastructure/controllers/supplier.control
     JwtController,
     UserController,
     SupplierController,
+    StoreController,
   ],
 })
 export class InfrastructureModule {}
